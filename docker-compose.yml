@@ -1,0 +1,28 @@
+services:
+  parking-app:
+    build: .
+    container_name: parking-app
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://postgres:password@db:5432/parking
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: parking-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: parking
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
