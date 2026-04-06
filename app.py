@@ -58,7 +58,6 @@ def car_spot():
                 result = f'''
 <h2> Место вашего автомобиля</h2>
 <p>Номер машиноместа: {spot.spot_number}</p>
-<p>Этаж: {spot.floor}</p>
 <p>Занято: {spot.occupied}</p>
 '''
             else:
